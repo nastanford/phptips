@@ -1,0 +1,21 @@
+# PDO 
+## Long Way
+'''
+$dbh = new PDO('mysql:dbname=testdb;host=127.0.0.1', $user, $password);
+$stmt = $dbh->prepare('INSERT INTO REGISTRY (name, value) VALUES (:name, :value)');
+$stmt->bindParam(':name', $name);
+$stmt->bindParam(':value', $value);
+
+// insert one row
+$name = 'one';
+$value = 1;
+$stmt->execute();
+```
+
+## Shorter way
+
+```
+$dbh = new PDO('mysql:dbname=testdb;host=127.0.0.1', $user, $password);
+$stmt = $dbh->prepare('UPDATE people SET name = :new_name WHERE id = :id');
+$stmt->execute( ['new_name' => $name, 'id' => $id] );
+```
